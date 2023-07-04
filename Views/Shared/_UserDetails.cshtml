@@ -1,0 +1,36 @@
+﻿@model HSMINET.Models.RegistrationViewDetailsModel
+<div class="panel panel-default">
+    <div class="panel-heading"></div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-4">
+                <label for="Name" class="col-form-label">Name:</label>
+                @Html.DisplayFor(model => model.Name)
+            </div>
+            <div class="col-lg-4">
+                <label for="Mobileno" class="col-form-label">Department:</label>
+                @Html.DisplayFor(model => model.Department)
+            </div>
+            <div class="col-lg-4">
+                <label for="EmailID" class="col-form-label">Email:</label>
+                @Html.DisplayFor(model => model.Email)
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-lg-4">
+                <label for="Gender" class="col-form-label">DepartmentFloor:</label>
+                @Html.DisplayFor(model => model.DepartmentFloor)
+            </div>
+
+            <div class="col-lg-4">
+                <label for="DateofJoining" class="col-form-label">Extension:</label>
+                @Html.DisplayFor(model => model.Extension)
+            </div>
+            <div class="col-lg-4">
+                <label for="DateofJoining" class="col-form-label">Ticket #:</label>
+                @Html.DisplayFor(model => model.Notifications_Id)
+            </div>
+        </div>
+    </div>
+</div>

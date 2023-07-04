@@ -1,0 +1,148 @@
+﻿@model HSMINET.Models.AssignTicketsModel
+@{
+    ViewData["Title"] = "Assign Ticket";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="hpanel hgreen">
+                    <div class="panel-heading">
+                        <div class="panel-tools">
+                            <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                        </div>
+                        Choose User to Assign Ticket
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+
+                            @if (TempData["MessageError"] != null)
+                            {
+                                <p class="alert alert-success" id="successMessage">@TempData["MessageError"]</p>
+                            }
+                            @if (TempData["MessageError"] != null)
+                            {
+                                <p class="alert alert-danger" id="successMessage">@TempData["MessageError"] </p>
+                            }
+
+                            @Html.AntiForgeryToken()
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    @Html.DropDownListFor(a => a.RegistrationID, new SelectList(Model.AdminList, "RegistrationID", "Name", "Email"), new { @class = "form-control normaldrop" })
+
+                                    @Html.ValidationMessageFor(a => a.RegistrationID)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hpanel hred">
+                    <div class="panel-heading">
+                        <div class="panel-tools">
+                            <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                        </div>
+                        Choose  Tickets
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <table id="mytable" class="table table-striped table-bordered">
+                                <div class="row">
+                                    @for (var i = 0; i < Model.TicketList.Count(); i++)
+                                    {
+
+                                        <div class="col-md-3">
+                                            <div>
+                                                @Html.CheckBoxFor(t => Model.Checklist[i])
+                                                <label>
+                                                    @Model.TicketList[i].Name
+                                                    @*@Html.DisplayFor(t => Model.TicketList[i].Notifications_Id)*@
+                                                    @Html.HiddenFor(t => Model.TicketList[i].Notifications_Id)
+                                                    @Html.HiddenFor(t => Model.TicketList[i].Name)
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    }
+                                </div>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-offset-0 col-md-12">
+                            <input type="submit" value="Assign Ticket" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Unassigned Tickets-->
+            <div class="col-xs-12">
+                <div class="hpanel">
+                    <div class="panel-heading">
+                        <div class="panel-tools">
+                            <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                        </div>
+                        Unassigned Tickets
+                    </div>
+                    <div class="panel-body list">
+                        <table id="example1" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Ticket #</th>
+                                    <th>Name</th>
+                                    <th>Department Floor</th>
+                                    <th>Date Reported</th>
+                                    <th>Extension</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            @for (var i=0;i<Model.TicketList.Count;i++)
+                            {
+                        <tr>
+                            <td>@Html.CheckBoxFor(t=>Model.Checklist[i])</td>
+                            <td>@Model.TicketList[i].Notifications_Id</td>
+                            <td>@Model.TicketList[i].Name</td>
+                            <td>@Model.TicketList[i].Departmentfloor</td>
+                            <td>@Model.TicketList[i].DateReported</td>
+                            <td>@Model.TicketList[i].Extension</td>
+                            <td>
+                                @*@Html.ActionLink("Close", "CloseTicket", new { id = item.Notifications_Id })*@
+                            </td>
+                        </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+@section scripts{
+    <script>
+        $(function () {
+            $('#example1').dataTable({
+                "processing": true,
+                dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                buttons: [
+                    { extend: 'copy', className: 'btn-sm' },
+                    { extend: 'csv', title: 'HRS Closed Tickets', className: 'btn-sm' },
+                    { extend: 'pdf', title: 'HRS Closed Tickets', className: 'btn-sm' },
+                    { extend: 'print', className: 'btn-sm' }
+                ]
+            });
+        });
+    </script>
+
+}

@@ -1,0 +1,166 @@
+﻿@model SingleModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "~/Views/Shared/AgentLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-3">
+        <div class="hpanel stats">
+            <div class="panel-body h-200">
+                <div class="stats-icon pull-right">
+                    <i class="pe-7s-server fa-4x"></i>
+                </div>
+                <div class="m-t-xl">
+                    <h1 class="text-success">@ViewBag.MyTotalCase</h1>
+                    <span class="font-bold no-margins">
+                        Total Cases Handled
+                    </span>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <p></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div class="hpanel stats">
+            <div class="panel-body h-200">
+                <div class="stats-icon pull-right">
+                    <i class="pe-7s-check fa-4x"></i>
+                </div>
+                <div class="m-t-xl">
+                    <h1 class="text-success">@ViewBag.MyClosed</h1>
+                    <span class="font-bold no-margins">
+                        Closed Tickets
+                    </span>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <a href="/Agent/ClosedTickets"> <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div class="hpanel stats">
+            <div class="panel-body h-200">
+                <div class="stats-icon pull-right">
+                    <i class="pe-7s-date fa-4x"></i>
+                </div>
+                <div class="m-t-xl">
+                    @if (ViewBag.MyOpen > 0)
+                    {
+                        <h1 class="text-success" style="color:red">@ViewBag.MyOpen</h1>
+                    }
+                    else
+                    {
+                        <h1 class="text-success" style="color:green">@ViewBag.MyOpen</h1>
+
+                    }
+                    <span class="font-bold no-margins">
+                        Open Cases
+                    </span>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <p></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div class="hpanel stats">
+            <div class="panel-body h-200">
+                <div class="stats-icon pull-right">
+                    <i class="pe-7s-unlock fa-4x"></i>
+                </div>
+                <div class="m-t-xl">
+                    <h1 class="text-success">@ViewBag.Today</h1>
+                    <span class="font-bold no-margins">
+                        Assigned Tickets For @DateTime.Today.DayOfWeek
+                    </span>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <a href="/Agent/OpenTickets"> <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="hpanel hred">
+            <div class="panel-heading">
+                <div class="panel-tools">
+                    <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                </div>
+                All Tickets
+            </div>
+            <div class="panel-body">
+                <table id="Agentable" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Ticket #</th>
+                            <th>Name</th>
+                            <th>Extension</th>
+                            <th>Department</th>
+                            <th>Floor</th>
+                            <th>Issue</th>
+                            <th>FeedBack</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model.AssignedTickets)
+                    {
+                <tr>
+                    @if (item.Incidence.RoleID == 2)
+                    {
+                        <td>@item.Incidence.Notifications_Id</td>
+                        <td>@item.Incidence.Name</td>
+                        <td>@item.Incidence.Extension</td>
+                        <td>@item.Incidence.Department</td>
+                        <td>@item.Incidence.Departmentfloor</td>
+                        <td>@item.Incidence.FeedBack</td>
+                        <td>@item.Incidence.Response</td>
+                        <td style="background-color:#e74c3c;color:#FFFFFF;">Open Ticket</td>
+                    }
+                    else if (item.Incidence.RoleID == null)
+                    {
+                        <td>@item.Incidence.Notifications_Id</td>
+                        <td>@item.Incidence.Name</td>
+                        <td>@item.Incidence.Extension</td>
+                        <td>@item.Incidence.Department</td>
+                        <td>@item.Incidence.Departmentfloor</td>
+                        <td>@item.Incidence.FeedBack</td>
+                        <td>@item.Incidence.Response</td>
+                        <td style="background-color:rgb( 40, 180, 99 );color:#FFFFFF;">Closed Ticket</td>
+
+                    }
+                </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(function () {
+
+            // Initialize Example 1
+            $('#Agentable').dataTable({
+
+                dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                buttons: [
+                    { extend: 'copy', className: 'btn-sm' },
+                    { extend: 'csv', title: 'My Ticket Data', className: 'btn-sm' },
+                    { extend: 'pdf', title: 'My Ticket Data', className: 'btn-sm' },
+                    { extend: 'print', className: 'btn-sm' }
+                ]
+            });
+        });
+    </script>
+}

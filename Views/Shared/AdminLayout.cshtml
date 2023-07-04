@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>@ViewBag.Title</title>
+    <link type="text/css" rel="stylesheet" href="~/Homer/vendor/fontawesome/css/font-awesome.css" />
+    <link type="text/css" rel="stylesheet" href="~/Homer/vendor/metisMenu/dist/metisMenu.css" />
+    <link type="text/css" rel="stylesheet" href="~/Homer/vendor/animate.css/animate.css" />
+    <link type="text/css" rel="stylesheet" href="~/Homer/vendor/bootstrap/dist/css/bootstrap.css" />
+    <link type="text/css" rel="stylesheet" href="~/Homer/vendor/datatables.net-bs/css/dataTables.bootstrap.min.css" />
+    <!-- App styles -->
+    <link type="text/css" rel="stylesheet" href="~/Homer/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
+    <link type="text/css" rel="stylesheet" href="~/Homer/fonts/pe-icon-7-stroke/css/helper.css" />
+    <link type="text/css" rel="stylesheet" href="~/Homer/styles/style.css">
+</head>
+<body class="fixed-navbar fixed-sidebar">
+    <div class="splash">
+        <div class="color-line">
+        </div>
+        <div class="splash-title">
+            <h1>Health & Safety Help Desk</h1>
+            <p>Secure Tomorrow</p>
+            <div class="spinner">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="header">
+        <div class="color-line">
+        </div>
+        <div id="logo" class="light-version">
+            <span>Health &amp; Safety</span>
+        </div>
+        <partial name="_HeaderPartial" />
+    </div>
+    <partial name="_AdminPartial" />
+    <div id="wrapper">
+        <div class="content animate-panel">
+            @RenderBody()
+        </div>
+        <footer class="footer">
+            <span class="pull-right">
+                Secure Tomorrow
+            </span>
+            Minet
+        </footer>
+    </div>
+    <!-- Vendor scripts -->
+    <script type="text/javascript" src="~/Homer/vendor/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/Homer/vendor/jquery-ui/jquery-ui.min.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/Homer/vendor/slimScroll/jquery.slimscroll.min.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/Homer/vendor/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/Homer/vendor/metisMenu/dist/metisMenu.min.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/Homer/vendor/iCheck/icheck.min.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/Homer/vendor/sparkline/index.js" asp-append-version="true"></script>
+    <!-- DataTables -->
+    <script type="text/javascript" src="~/Homer/vendor/datatables/media/js/jquery.dataTables.min.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/Homer/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js" asp-append-version="true"></script>
+    <!-- DataTables buttons scripts -->
+    <script type="text/javascript" src="~/Homer/vendor/pdfmake/build/pdfmake.min.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/Homer/vendor/pdfmake/build/vfs_fonts.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/Homer/vendor/datatables.net-buttons/js/buttons.html5.min.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/Homer/vendor/datatables.net-buttons/js/buttons.print.min.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/Homer/vendor/datatables.net-buttons/js/dataTables.buttons.min.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/Homer/vendor/datatables.net-buttons-bs/js/buttons.bootstrap.min.js" asp-append-version="true"></script>
+    <!-- App scripts -->
+    <script type="text/javascript" src="~/Homer/scripts/homer.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

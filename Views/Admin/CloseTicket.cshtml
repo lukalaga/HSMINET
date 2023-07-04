@@ -1,0 +1,111 @@
+﻿@model HSMINET.Models.Incidence
+
+@{
+    ViewData["Title"] = "Close Ticket";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+
+}
+<style>
+    input, textarea {
+        margin-bottom: 10px;
+    }
+</style>
+@*@using (@Html.BeginForm("CloseTicket", "Admin", FormMethod.Post, new { @id = "form1", @enctype = "multipart/form-data" }))*@
+
+    <form class="form-horizontal" method="post" asp-controller="Admin" asp-action="CloseTicket">
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Notifications_Id)
+
+        <div class="content animate-panel">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="hpanel hred">
+                        <div class="panel-heading">
+                            <div class="panel-tools">
+                                <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                            </div>
+                            Ticket Data
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Name</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">CellPhone:</label>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Cellphone, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Department:</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.Department, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Department Floor</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.Departmentfloor, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Extension:</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.Extension, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Incidence Time:</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.incidencetime, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Issue:</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.FeedBack, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="hpanel hgreen">
+                        <div class="panel-heading">
+                            <div class="panel-tools">
+                                <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                            </div>
+                            Response
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.Response, new { htmlAttributes = new { @class = "form-control" } })
+                                    <span asp-validation-for="Response" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="file" name="Files" />
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-5">
+                                        <button class="btn btn-primary" type="submit">Send Feedback</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>

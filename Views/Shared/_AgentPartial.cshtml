@@ -1,0 +1,38 @@
+﻿<!-- Navigation -->
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+<aside id="menu">
+    <div id="navigation">
+        <div class="profile-picture">
+
+            <div class="stats-label text-color">
+                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @HttpContextAccessor.HttpContext.Session.GetString("Username")!</a>
+
+                <div id="sparkline1" class="small-chart m-t-sm"></div>
+
+                <div>
+                    <a class="nav-link text-dark" asp-controller="Login" asp-action="Logout">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <ul class="nav" id="side-menu">
+            <li>
+                <a class="nav-link text-dark" asp-controller="Agent" asp-action="Dashboard"> <span class="nav-label">Dashboard</span> <span class="fa fa-dashboard"></span> </a>
+            </li>
+
+            <li>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Agent" asp-action="OpenTickets">My Open Cases</a>
+            </li>
+            <li>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Agent" asp-action="ClosedTickets">My Closed Cases</a>
+            </li>
+            <li>
+                <a class="nav-link text-dark" href="https://retail.minet.co.ke/hsreporting" target="_blank">Create Ticket</a>
+            </li>
+            <li>
+                <a class="nav-link text-dark" asp-controller="Agent" asp-action="ChangePassword">Change Password</a>
+            </li>
+        </ul>
+    </div>
+</aside>

@@ -1,0 +1,70 @@
+﻿@model SingleModel
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "My Tickets";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    if (Model.Incidences.Count() != 0)
+    {
+        <div class="col-md-12">
+            <div class="hpanel hred">
+                <div class="panel-heading">
+                    <div class="panel-tools">
+                        <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                    </div>
+                    <i>@HttpContextAccessor.HttpContext.Session.GetString("Username") Tickets</i>
+                </div>
+                <div class="panel-body">
+                    <table id="mytable" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Ticket #</th>
+                                <th>Name</th>
+                                <th>Reported</th>
+                                <th>Extension</th>
+                                <th>Floor</th>
+                                <th>Department</th>
+                                <th>Closed By</th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model.Incidences)
+                        {
+                            <tr>
+                                <td>@item.Notifications_Id</td>
+                                <td>@item.Name</td>
+                                <td>@item.DateReported</td>
+                                <td>@item.Extension</td>
+                                <td>@item.Departmentfloor</td>
+                                <td>@item.Department</td>
+                                <td>@item.ClosedBy</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    }
+}
+@section scripts{
+    <script>
+        $(function () {
+            $('#myTable').dataTable({
+                "processing": true,
+                dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                buttons: [
+                    { extend: 'copy', className: 'btn-sm' },
+                    { extend: 'csv', title: 'My Tickets', className: 'btn-sm' },
+                    { extend: 'pdf', title: 'My Tickets', className: 'btn-sm' },
+                    { extend: 'print', className: 'btn-sm' }
+                ]
+            });
+        });
+    </script>
+}

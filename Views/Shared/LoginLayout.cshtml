@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <!--    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <title>@ViewBag.Title | Minet</title>
+    <link href="@Url.Content("~/Homer/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="~/Homer/styles/style.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body class="blank" style="background: rgb(19,84,122);
+background: linear-gradient(90deg, rgba(19,84,122,1) 25%, rgba(128,208,199,1) 68%); ">
+
+    <div class="splash">
+        <div class="color-line">
+        </div>
+        <div class="splash-title">
+            <h1 style="color:goldenrod; font-size:30px;">Health &amp; Safety Help Desk</h1>
+            <p>Minet</p>
+            <div class="spinner">
+                <div class="rect1">
+                </div>
+                <div class="rect2">
+                </div>
+                <div class="rect3">
+                </div>
+                <div class="rect4">
+                </div>
+                <div class="rect5">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="color-line"></div>
+
+    <div class="login-container">
+        <div class="row">
+            @RenderBody()
+        </div>
+    </div>
+    <script src="~/Homer/scripts/homer.js"></script>
+</body>
+@RenderSection("scripts", required: false)
+</html>

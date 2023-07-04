@@ -1,0 +1,188 @@
+﻿@model SingleModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-3">
+        <div class="hpanel stats">
+            <div class="panel-body h-200">
+                <div class="stats-icon pull-right">
+                    <i class="pe-7s-server fa-4x"></i>
+                </div>
+                <div class="m-t-xl">
+                    <h1 class="text-success">@ViewBag.TotalCase</h1>
+                    <span class="font-bold no-margins">
+                        Total Cases
+                    </span>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <p></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div class="hpanel stats">
+            <div class="panel-body h-200">
+                <div class="stats-icon pull-right">
+                    <i class="pe-7s-check fa-4x"></i>
+                </div>
+                <div class="m-t-xl">
+                    <h1 class="text-success">@ViewBag.Resolved</h1>
+                    <span class="font-bold no-margins">
+                        Resolved Cases
+                    </span>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <a href="/Admin/ClosedTickets"> <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div class="hpanel stats">
+            <div class="panel-body h-200">
+                <div class="stats-icon pull-right">
+                    <i class="pe-7s-drawer fa-4x"></i>
+                </div>
+                <div class="m-t-xl">
+                    <h1 class="text-success">@ViewBag.Pending</h1>
+                    <span class="font-bold no-margins">
+                        Pending Assignment
+                    </span>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <a href="/Admin/AssignTickets"> <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div class="hpanel stats">
+            <div class="panel-body h-200">
+                <div class="stats-icon pull-right">
+                    <i class="pe-7s-unlock fa-4x"></i>
+                </div>
+                <div class="m-t-xl">
+                    <h1 class="text-success">@ViewBag.Open</h1>
+                    <span class="font-bold no-margins">
+                        Open Cases
+                    </span>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <a href="/Admin/OpenTickets"> <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="hpanel hred">
+            <div class="panel-body h-200">
+                <div class="stats-title pull-left">
+                    <h4 style="color:maroon">Most Affected</h4>
+                </div>
+                <div class="m-t-xl">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <small class="stats-label">Department:</small>
+                            @if (ViewBag.HighDep == null)
+                            {
+                                <h4>Null</h4>
+                            }
+                            else
+                            {
+                                <i style="color:green; font:12px; text-align:center;">@ViewBag.HighDep</i>
+                            }
+                        </div>
+                        <div class="col-xs-3">
+                            <small class="stats-label">Floor:</small>
+                            @if (ViewBag.HighFloor == null)
+                            {
+                                <h4>Null</h4>
+                            }
+                            else
+                            {
+                                <i style="color:green; font:12px;">@ViewBag.HighFloor</i>
+                            }
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="stats-label">User:</div>
+                            @if (ViewBag.HighUser == null)
+                            {
+                                <h4>Null</h4>
+                            }
+                            else
+                            {
+                                <i style="color:green; font:15px;">@ViewBag.HighUser</i>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Users-->
+    <div class="col-lg-4">
+        <div class="hpanel hred">
+            <div class="panel-body h-200">
+                <div class="stats-title pull-left">
+                    <h4 style="color:maroon">Pending Closure</h4>
+                </div>
+                <div class="m-t-xl">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <small class="stats-label">Tangaso</small>
+                            @if (ViewBag.Tangaso == 0)
+                            {
+                                <h4 style="color:forestgreen;">0</h4>
+                            }
+                            else
+                            {
+                                <h4>@ViewBag.Tangaso</h4>
+                            }
+                        </div>
+                        <div class="col-xs-3">
+                            <small class="stats-label">David M</small>
+                            @if (ViewBag.DavidM == 0)
+                            {
+                                <h4 style="color:forestgreen;">0</h4>
+                            }
+                            else
+                            {
+                                <h4>@ViewBag.DavidM</h4>
+                            }
+                        </div>
+                        <div class="col-xs-3">
+                            <small class="stats-label">Nalwenje</small>
+                            @if (ViewBag.Nalwenje == 0)
+                            {
+                                <h4 style="color:forestgreen;">0</h4>
+                            }
+                            else
+                            {
+                                <h4>@ViewBag.Nalwenje</h4>
+                            }
+                        </div>
+
+                        <div class="col-xs-3">
+                            <small class="stats-label">Nickson O</small>
+                            @if (ViewBag.Nickson == 0)
+                            {
+                                <h4 style="color:forestgreen;">0</h4>
+                            }
+                            else
+                            {
+                                <h4>@ViewBag.Nickson</h4>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

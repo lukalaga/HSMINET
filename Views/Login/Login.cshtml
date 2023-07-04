@@ -1,0 +1,39 @@
+﻿@model HSMINET.Models.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/LoginLayout.cshtml";
+    var returnUrl = Context.Request.Query["returnUrl"];
+}
+@Html.AntiForgeryToken()
+<form asp-controller="Login" asp-action="Login" method="post" asp-route-returnurl="@returnUrl">
+
+    <div class="login-panel">
+        @if (ViewBag.errormessage != null)
+        {
+            <i class="alert alert-danger login-panel" style="text-align:center;" id="successMessage">@ViewBag.errormessage</i>
+        }
+        <div class="hpanel hred">
+            <div class="panel-body">
+                <img src="~/Minet-Logo-2.png" />
+                <div class="form-group">
+                    <label class="control-label" asp-for="Username">Username</label>
+                    <input asp-for="Username" type="text" class="form-control" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" asp-for="Password">Password</label>
+                    <input autocomplete="off" asp-for="Password" type="password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-0 col-md-10">
+                        <input id="Submit1" class="btn btn-success" type="submit" value="Sign in To Account">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,38 @@
+﻿<!-- Navigation -->
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+<aside id="menu">
+    <div id="navigation">
+        <div class="profile-picture">
+
+            <div class="stats-label text-color">
+                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @HttpContextAccessor.HttpContext.Session.GetString("Username")!</a>
+
+                <div id="sparkline1" class="small-chart m-t-sm"></div>
+
+                <div>
+                    <a class="nav-link text-dark" asp-controller="Login" asp-action="Logout" aria-label="Logout Link">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <ul class="nav" id="side-menu">
+            <li>
+                <a class="nav-link text-dark" asp-controller="Admin" asp-action="Dashboard"> <span class="nav-label">Dashboard</span> <span class="fa fa-dashboard"></span> </a>
+            </li>
+
+            <li>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AssignTickets" aria-label="Assign Ticket Link">Assign Ticket</a>
+            </li>
+            <li>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="OpenTickets" aria-label="View open tickets">Open Cases</a>
+            </li>
+            <li>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="ClosedTickets" aria-label="View closed tickets">Closed Cases</a>
+            </li>
+            <li>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="MyTickets" aria-label="View my tickets">My Tickets</a>
+            </li>
+        </ul>
+    </div>
+</aside>
